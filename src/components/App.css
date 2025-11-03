@@ -1,0 +1,204 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.card { padding: 2em; }
+.read-the-docs { color: #888; }
+
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  border-radius: 10px;
+  margin-left: -10vh;
+  margin-top: 4vh;
+}
+
+.data-line {
+  z-index: -1;
+  position: absolute;
+  height: 83vh;
+  width: 35vh;
+  top: 13vh;
+  left: 120vh;
+}
+
+.photo-box {
+  z-index: -1;
+  position: absolute;
+  height: 71vh;
+  width: 55.3vh;
+  top: 21vh;
+  left: 35.6vh;
+}
+
+.background-photo {
+  position: fixed;      
+  top: -0vh;
+  left: -7vh;
+  width: 105vw;         
+  height: 100vh;        
+  object-fit: cover;    
+  z-index: -5;          
+  filter: brightness(0.45) contrast(1.1) blur(2px);
+}
+
+/* ===== Base bar (button) styling ===== */
+button {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+
+  height: 28px;
+  border: 2px solid #1e3a8a;
+  border-radius: 4px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.15) 0 6px,
+      transparent 6px 20px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.1) 0 4px,
+      transparent 4px 18px
+    ),
+    linear-gradient(180deg, #0f1f5f, #0b1745);
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Hover: lift slightly */
+button:hover {
+  transform: translateY(-2px);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.25) 0 6px,
+      transparent 6px 20px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.15) 0 4px,
+      transparent 4px 18px
+    ),
+    linear-gradient(180deg, #123dff, #0b1745);
+}
+
+/* === Three glowing windows per bar === */
+.image-card .floor {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* base pattern */
+.image-card .floor::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.55; /* dim by default */
+  transition: opacity .2s ease, filter .2s ease, transform .2s ease;
+
+  --cellW: 14px;
+  --cellH: 14px;
+
+  background-image:
+    linear-gradient(#ffe59a, #ffe59a),
+    linear-gradient(#ffe59a, #ffe59a),
+    linear-gradient(#ffe59a, #ffe59a);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+
+  background-position:
+    6px 4px,
+    26px 4px,
+    46px 4px;
+
+  background-size:
+    var(--cellW) var(--cellH),
+    var(--cellW) var(--cellH),
+    var(--cellW) var(--cellH);
+
+  filter: drop-shadow(0 0 2px rgba(255, 230, 150, 0.6));
+}
+
+/* “Random” per bar index */
+.image-card:nth-child(2n)  .floor::after { background-position: 26px 4px, 66px 4px, 106px 4px; }
+.image-card:nth-child(3n)  .floor::after { background-position: 6px 4px, 46px 4px, 86px 4px; }
+.image-card:nth-child(4n)  .floor::after { background-position: 46px 4px, 86px 4px, 126px 4px; }
+.image-card:nth-child(5n)  .floor::after { background-position: 26px 4px, 46px 4px, 86px 4px; }
+.image-card:nth-child(6n)  .floor::after { background-position: 6px 4px, 86px 4px, 126px 4px; }
+.image-card:nth-child(7n)  .floor::after { background-position: 6px 4px, 66px 4px, 106px 4px; }
+.image-card:nth-child(8n)  .floor::after { background-position: 26px 4px, 86px 4px, 126px 4px; }
+.image-card:nth-child(9n)  .floor::after { background-position: 6px 4px, 26px 4px, 106px 4px; }
+.image-card:nth-child(10n) .floor::after { background-position: 6px 4px, 46px 4px, 126px 4px; }
+.image-card:nth-child(11n) .floor::after { background-position: 26px 4px, 66px 4px, 86px 4px; }
+.image-card:nth-child(12n) .floor::after { background-position: 6px 4px, 106px 4px, 146px 4px; }
+
+/* hover brightens a bit */
+.image-card .floor:hover::after {
+  opacity: 0.8;
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+}
+
+/* selected (clicked) state — stays lit until another button is clicked */
+.image-card:has(img.show) .floor::after {
+  opacity: 1;
+  filter: brightness(1.15) contrast(1.05);
+  transform: none;
+}
+
+/* optional soft glow around selected building */
+.image-card:has(img.show) .floor {
+  box-shadow:
+    0 0 0 2px rgba(255, 230, 150, 0.4) inset,
+    0 0 10px rgba(255, 230, 150, 0.35);
+}
+
+/* subtle skyline glow */
+.image-card .floor::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 60% at 50% -20%, rgba(255,255,210,0.28), transparent 60%);
+  mix-blend-mode: screen;
+}
+
+/* responsive window sizing on narrow bars */
+@media (max-width: 99999px) {
+  .image-card .floor::after {
+    background-size:
+      clamp(8px, 20%, 14px) clamp(8px, 20%, 14px),
+      clamp(8px, 20%, 14px) clamp(8px, 20%, 14px),
+      clamp(8px, 20%, 14px) clamp(8px, 20%, 14px);
+  }
+}
