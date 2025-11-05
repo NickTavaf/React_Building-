@@ -14,9 +14,9 @@ function App() {
 
   return (
     <div className="gallery">
-      <img className="data-line" src="/images/DataLines.png" alt="DataLine" />
-      <img className="background-photo" src="/images/Background1.png" alt="Background" />
-      <img className="photo-box" src="/images/photobox.png" alt="PhotoBox" />
+      <img className="data-line" src="./images/DataLines.png" alt="DataLine" />
+      <img className="background-photo" src="./images/Background1.png" alt="Background" />
+      <img className="photo-box" src="./images/photobox.png" alt="PhotoBox" />
       {images.map((img) => (
         <ImageCard
           key={img.id}
